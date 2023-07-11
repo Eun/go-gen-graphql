@@ -89,8 +89,7 @@ func generateForStruct(w io.Writer, v reflect.Type, indentLevel int, indent, jso
 		if !field.IsExported() {
 			continue
 		}
-		graphQLTag := field.Tag.Get(*graphQLTagName)
-		name, _, _ := strings.Cut(graphQLTag, ",")
+		name := field.Tag.Get(*graphQLTagName)
 		if name == "-" {
 			firstLine++
 			continue
