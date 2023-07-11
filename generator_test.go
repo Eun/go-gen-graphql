@@ -62,6 +62,22 @@ projects(filter: active){
 			wantErr: false,
 		},
 		{
+			name: "slice use",
+			args: &struct {
+				Creator *struct {
+					Teams []struct {
+						Name string `json:"name"`
+					} `json:"teams"`
+				} `json:"creator"`
+			}{},
+			want: `creator{
+  teams{
+    name
+  }
+}`,
+			wantErr: false,
+		},
+		{
 			name:    "nil",
 			args:    nil,
 			want:    "",
