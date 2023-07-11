@@ -119,6 +119,11 @@ func generateForStruct(w io.Writer, v reflect.Type, indentLevel int, indent, jso
 		if fieldType.Kind() == reflect.Ptr {
 			fieldType = fieldType.Elem()
 		}
+
+		if fieldType.Kind() == reflect.Slice {
+			fieldType = fieldType.Elem()
+		}
+
 		if fieldType.Kind() == reflect.Struct {
 			if _, err := w.Write([]byte{'{', '\n'}); err != nil {
 				return fmt.Errorf("error writing: %w", err)
